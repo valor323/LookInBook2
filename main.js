@@ -6,7 +6,12 @@ var outside;
 
 function initializeApp(){
     newYorkTimesAjax();
+    // clickHandlerToOpenNewPage();
 }
+
+// function clickHandlerToOpenNewPage() {
+//     $('.poster').on('click', openBookPage)
+// }
 
 async function newYorkTimesAjax (){
     var newYorkTimesParams = {
@@ -63,10 +68,16 @@ function googleBooksAjaxSuccessful(responseData){
     let image = responseData.items[0].volumeInfo.imageLinks.thumbnail;
     // let imageSource = image.addClass('poster')
     // $('#bookRow').append("<img src ='" + imageSource + "'>")
-    let bookPoster = $('<img>').addClass('poster').attr('src', image);
+    let bookPoster = $('<img>').addClass('poster').attr({'src' : image, 'title': responseData.items[0].volumeInfo.title, 'description': responseData.items[0].volumeInfo.description}).on('click', openBookPage);
     $('#bookRow').append(bookPoster)
 }
 
 function googleBooksAjaxError(){
     console.log('error');
+}
+
+function openBookPage() {
+    console.log('this', $(this))
+    $('.poster').remove();
+    
 }
