@@ -1,0 +1,9 @@
+
+#bookRow {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+}
+.poster {
+    width: 25%;
+}
